@@ -23,16 +23,21 @@ class MemberRepositoryTest {
     void testMember(){
 
         //given
-        Member member = new Member();
-        member.setUsername("memberA");
-
-        //when
-        Long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
-
-        //then
-        Assertions.assertThat(findMember).isEqualTo(member);//같은 트랜잭션에서 같은 id는 같은 객체임을 jpa가 보장
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+//        Member member = new Member();
+//        member.setUsername("memberA");
+//
+//        //when
+//        Long saveId = memberRepository.save(member);
+//        Member findMember = memberRepository.find(saveId);
+//
+//        //then
+//        Assertions.assertThat(findMember).isEqualTo(member);//같은 트랜잭션에서 같은 id는 같은 객체임을 jpa가 보장
+//        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+//        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
     }
 }
+
+
+
+
+
