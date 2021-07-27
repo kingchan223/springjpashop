@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name="orders")
+@Table(name="orders")/*order예약어를 피라기 우해 관례상 orders를 테이블명으로 한다.*/
 @Getter
 @Entity
 public class Order {
@@ -16,21 +16,40 @@ public class Order {
     @Column(name ="order_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)/*배송과 1:1관계. 자주 access하는 Order를 연관관계의 주인으로 한다.*/
     @JoinColumn(name="delivery_id")
     private Delivery delivery;
 
-    @OneToMany(mappedBy="order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    /*컬렉션은 필드에서 바로 초기화하는 것이 안전하다.*/
+    @OneToMany(mappedBy="order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();/*컬렉션 바로 초기화*/
 
+    //order_date
     private LocalDateTime orderDate; //주문 시간
 
     @Enumerated
     private OrderStatus status; // 주문 상태: ORDER, CANCEL
+
+    //==연관관계 편의 메서드==
+    public void saveMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void saveDelivery(Delivery delivery){
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
+
 
     private void setId(Long id) {
         this.id = id;
@@ -51,3 +70,7 @@ public class Order {
         this.status = status;
     }
 }
+
+
+
+

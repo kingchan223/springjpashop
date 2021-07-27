@@ -12,4 +12,13 @@ public class Movie extends Item{
 
     private String director;
     private String actor;
+
+    private void setDirector(String director) {
+        this.director = director;
+    }
+    private void setActor(String actor) {
+        this.actor = actor;
+    }
 }
+
+
