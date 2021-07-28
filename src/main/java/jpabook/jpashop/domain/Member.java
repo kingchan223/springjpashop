@@ -1,11 +1,13 @@
 package jpabook.jpashop.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @Getter
 @Entity
 public class Member {
@@ -22,19 +24,21 @@ public class Member {
     @OneToMany(mappedBy="member")
     private List<Order> orders  = new ArrayList<>();
 
-    private void setId(Long id) {
+    public Member(){}
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    private void setAddress(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    private void setOrders(List<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }

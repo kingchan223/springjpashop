@@ -34,7 +34,7 @@ public class MemberRepositoryImpl implements MemberRepository{
 
     //name으로 이름 조회
     public List<Member> findByName(String name){
-        return em.createQuery("select m from Member where m.name:=name", Member.class)
+        return em.createQuery("select m from Member m where m.name=:name", Member.class)
                 .setParameter("name", name)
                 .getResultList();
     }
