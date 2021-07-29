@@ -36,17 +36,16 @@ public class OrderServiceImpl implements OrderService{
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
 
-        //주문상품 생성
-        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        //주문상품 생성 : OrderItem은 Item과 수량(count)에 대한 정보가 필요하다.
+        OrderItem orderItem = OrderItem.createOrderItem(item, count);
 
-        //주문생성
+        //주문생성 : 주문은 주문한 회원정보, 배송지 정보, orderItem에 대한 정보가 필요하다.
         Order order = Order.createOrder(member, delivery, orderItem);
 
         orderRepository.save(order);//cascade덕에 orderitem, delivery모두 persist된다.
         //order만 delivery를 사용하고, order만 orderItem을 사용하기 때문에 cascade의 범위를 이렇게 해도된다. 라이프 사이클이 같다.
         return order.getId();
     }
-
 
     //취소
     @Transactional

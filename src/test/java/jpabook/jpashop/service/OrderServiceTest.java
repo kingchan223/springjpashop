@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class OrderServiceTest  {
+public class OrderServiceTest{
 
     @Autowired OrderRepository orderRepository;
     @Autowired OrderService orderService;
@@ -32,7 +32,6 @@ public class OrderServiceTest  {
 
     @Test
     public void 상품주문() throws Exception{
-
         //given
         Member member = new Member();
         member.setName("회원1");
@@ -55,10 +54,12 @@ public class OrderServiceTest  {
         assertEquals("주문한 상품 종류 수가 정확해야한다.", 1, order.getOrderItems().size());
         assertEquals("주문 가격은 가격*수량이다.", 10000*2, order.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야한다.", 8, book.getStockQuantity());
+
     }
 
     @Test(expected = NotEnoughStockException.class)
     public void 상품주문_재고수량초과() throws Exception{
+
         //given
         Member member = new Member();
         member.setName("회원1");
@@ -78,7 +79,6 @@ public class OrderServiceTest  {
 
         //then
         fail("재고 수량 부족 예외가 터져야하는데, 터지지 않았습니다.");
-
 
     }
 
@@ -105,6 +105,6 @@ public class OrderServiceTest  {
         //then
         Order order = orderRepository.findOne(orderId);
         assertEquals("주문 취소시 주문 상태는 CANCEL이어야합니다.", OrderStatus.CANCEL, order.getStatus());
-        assertEquals("주문이 취소된 상품은 그만큰 재고가원복되어야 합니다..", 10, book.getStockQuantity());
+        assertEquals("주문이 취소된 상품은 그만큰 재고가원복되어야 합니다.", 10, book.getStockQuantity());
     }
 }

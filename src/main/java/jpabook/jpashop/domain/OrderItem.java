@@ -44,14 +44,14 @@ public class OrderItem {
     }
 
     //==생성 메서드==
-    public static OrderItem createOrderItem (Item item, int orderPrice, int count){
+    public static OrderItem createOrderItem (Item item, int count){
         //--orderItem 세팅하기
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
-        orderItem.setOrderPrice(orderPrice);
+        orderItem.setOrderPrice(item.getPrice());
         orderItem.setCount(count);
 
-        //--item 개수 줄여주기
+        //--item 개수 줄여주기 --> 여기서 줄이면 JPA가 dirty checking해준다.
         item.removeStock(count);
         return orderItem;
     }
