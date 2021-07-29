@@ -1,6 +1,7 @@
-package jpabook.jpashop.repository;
+package jpabook.jpashop.repository.member;
 
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -12,9 +13,9 @@ import java.util.List;
 @Primary
 @RequiredArgsConstructor
 @Repository
-public class MemberRepositoryImpl implements MemberRepository{
+public class MemberRepositoryImpl implements MemberRepository {
 
-    @PersistenceContext//생략가능
+    @PersistenceContext//엔티티매니저 주입. 생략가능
     private final EntityManager em;
 
     //저장
@@ -39,3 +40,10 @@ public class MemberRepositoryImpl implements MemberRepository{
                 .getResultList();
     }
 }
+
+
+
+
+
+
+

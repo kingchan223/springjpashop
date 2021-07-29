@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain.item;
 
 import jpabook.jpashop.domain.Category;
+import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -21,26 +22,45 @@ public abstract class Item {
 
     private int price;
 
-    private int quantity;
+    private int stockQuantity;
 
     @ManyToMany(mappedBy="items")
     private List<Category> categories = new ArrayList<>();
 
+
+    //==비즈니스 로직==//Item의 데이터를 사용하므로 Item엔티티 안에 메소드 만든다. 응집력 좋아짐
+
+    //증가
+    public void addStock(int quantity){
+        this.stockQuantity += quantity;
+    }
+
+    //감소
+    public void removeStock(int quantity){
+        int restStock = this.stockQuantity - quantity;
+        if(restStock < 0){
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
+
     private void setId(Long id) {
         this.id = id;
     }
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
-    private void setPrice(int price) {
+    public void setPrice(int price) {
         this.price = price;
     }
-    private void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
-    private void setCategories(List<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
+    public Item() {}
 }
 
 

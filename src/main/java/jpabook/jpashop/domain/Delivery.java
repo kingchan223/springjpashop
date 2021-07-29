@@ -27,7 +27,7 @@ public class Delivery {
     public void setOrder(Order order) {
         this.order = order;
     }
-    private void setAddress(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
     private void setDeliveryStatus(DeliveryStatus deliveryStatus) {
