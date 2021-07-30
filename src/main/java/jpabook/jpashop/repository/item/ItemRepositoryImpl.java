@@ -1,12 +1,12 @@
 package jpabook.jpashop.repository.item;
 
 import jpabook.jpashop.domain.item.Item;
-import jpabook.jpashop.repository.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Primary
@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public class ItemRepositoryImpl implements ItemRepository {
 
+    @PersistenceContext
     private final EntityManager em;
 
     public void save(Item item){
