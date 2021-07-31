@@ -21,7 +21,7 @@ public class ItemRepositoryImpl implements ItemRepository {
         if(item.getId()==null){//아예 새로운 item
             em.persist(item);
         }else{//이미 있던 item을 update
-            em.merge(item);
+            Item mergedItem = em.merge(item);//파라미터로 넘어온 item은 영속관리X, 반환되는 mergedItem은 영속상태 O
         }
     }
 

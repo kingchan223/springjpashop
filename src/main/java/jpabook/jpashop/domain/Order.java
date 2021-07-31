@@ -35,7 +35,7 @@ public class Order {
     //order_date
     private LocalDateTime orderDate; //주문 시간
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private OrderStatus status; // 주문 상태: ORDER, CANCEL
 
 //    //다른데서 마음대로 생성못하도록 제약걸어두기 ->@NoArgsConstructor(access= AccessLevel.PROTECTED)로 대체

@@ -29,7 +29,8 @@ public class ItemController {
     /*아이템 등록*/
     @PostMapping("/items/new")
     public String createBook(BookForm bookForm){
-        Book book = Book.createBook(bookForm.getName(),
+        Book book = Book.createBook(
+                bookForm.getName(),
                 bookForm.getPrice(),
                 bookForm.getStockQuantity(),
                 bookForm.getAuthor(),
@@ -50,7 +51,8 @@ public class ItemController {
     public String updateItemForm(@PathVariable Long itemId, Model model){
         Book item = (Book)itemService.findOne(itemId);
 
-        BookForm form = BookForm.createBookForm(item.getId(),
+        BookForm form = BookForm.createBookForm(
+                item.getId(),
                 item.getName(),
                 item.getPrice(),
                 item.getStockQuantity(),
@@ -63,16 +65,15 @@ public class ItemController {
 
     /*아이템 수정*/
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute BookForm form, Model model){
+    public String updateItem(@PathVariable Long itemId, @ModelAttribute BookForm form, Model model){
 
-        Book book = Book.createBook(form.getId(),
+        itemService.updateItem(itemId,/*이미 있는 id-> 준영속 상태 item*/
                 form.getName(),
                 form.getPrice(),
                 form.getStockQuantity(),
                 form.getAuthor(),
                 form.getIsbn());
 
-        itemService.saveItem(book);
         return "redirect:/items";
     }
 }

@@ -4,6 +4,7 @@ import jpabook.jpashop.domain.Order;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,19 +17,23 @@ public class MemoryOrderRepository implements OrderRepository{
 
     @Override
     public void save(Order order) {
-        System.out.println(" ⎡⎯------------------------------------------------⎤");
-        System.out.println(" ⎜⎯-------------●●●● O R D E R ●●●●●---------------⎜");
-        System.out.println(" ⎜⎯-----------------●●●●●●--------------------⎜");
-        System.out.println(" ⎜⎯--------------------●●●-----------------------⎜");
-        System.out.println(" ⎜⎯----------------------●-------------------------⎜");
-        System.out.println("⎿⎯--------------●●●●●●●●●●●--------------⏌");
         Long orderId = seq++;
-        order.setId(orderId);
+//        order.setId(orderId);
         store.put(orderId, order);
     }
 
     @Override
     public Order findOne(Long id) {
         return store.get(id);
+    }
+
+    @Override
+    public List<Order> findAllByString(OrderSearch orderSearch) {
+        return null;
+    }
+
+    @Override
+    public List<Order> findAllByCriteria(OrderSearch orderSearch) {
+        return null;
     }
 }

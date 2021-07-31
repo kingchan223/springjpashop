@@ -25,7 +25,7 @@ public class MemoryItemRepository implements ItemRepository{
         System.out.println(" ⎜⎯----------------------●-------------------------⎜");
         System.out.println("⎿⎯--------------●●●●●●●●●●●--------------⏌");
         Long itemId = seq++;
-        item.setId(itemId);
+//        item.setId(itemId);
         store.put(itemId, item);
     }
 

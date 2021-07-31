@@ -25,7 +25,7 @@ public class MemoryMemberRepository implements MemberRepository{
         System.out.println(" ⎜⎯----------------------●-------------------------⎜");
         System.out.println("⎿⎯--------------●●●●●●●●●●●--------------⏌");
         Long memberId = seq++;
-        member.setId(memberId);
+//        member.setId(memberId);
         store.put(memberId, member);
     }
 

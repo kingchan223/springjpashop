@@ -34,6 +34,14 @@ public class Book extends Item{
         book.setId(id);
         return book;
     }
+    public void changeProperties(String name, int price, int stockQuantity, String author, String isbn){
+        this.setName(name);
+        this.setPrice(price);
+        this.setStockQuantity(stockQuantity);
+        this.setAuthor(author);
+        this.setIsbn(isbn);
+
+    }
 }
 
 
