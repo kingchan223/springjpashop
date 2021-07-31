@@ -44,7 +44,7 @@ public class Category {
     private void setItems(List<Item> items) {
         this.items = items;
     }
-    public void setParent(Category parent) {
+    private void setParent(Category parent) {
         this.parent = parent;
     }
     private void setChild(List<Category> child) {

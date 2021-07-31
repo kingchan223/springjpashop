@@ -19,16 +19,16 @@ public class ItemServiceTest {
     @Autowired
 ItemService itemService;
 
-    @Test
-    public void 상품추가_조회() throws Exception{
-        //given
-        Movie movie = new Movie();
-        movie.setName("멀홀랜드드라이브");
-
-        //when
-        itemService.saveItem(movie);
-
-        //then
-        Assert.assertEquals(movie, itemService.findOne(movie.getId()));
-    }
+//    @Test
+//    public void 상품추가_조회() throws Exception{
+//        //given
+//        Movie movie = new Movie();
+//        movie.setName("멀홀랜드드라이브");
+//
+//        //when
+//        itemService.saveItem(movie);
+//
+//        //then
+//        Assert.assertEquals(movie, itemService.findOne(movie.getId()));
+//    }
 }

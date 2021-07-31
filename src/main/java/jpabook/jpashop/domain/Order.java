@@ -38,6 +38,9 @@ public class Order {
     @Enumerated
     private OrderStatus status; // 주문 상태: ORDER, CANCEL
 
+//    //다른데서 마음대로 생성못하도록 제약걸어두기 ->@NoArgsConstructor(access= AccessLevel.PROTECTED)로 대체
+//    protected Order(){}
+
     //==연관관계 편의 메서드==//
     public void saveMember(Member member){
         this.member = member;
@@ -94,7 +97,7 @@ public class Order {
     }
 
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
     private void setMember(Member member) {
@@ -113,8 +116,7 @@ public class Order {
         this.status = status;
     }
 
-    //다른데서 마음대로 생성못하도록 제약걸어두기
-    //protected Order(){}
+
 }
 
 

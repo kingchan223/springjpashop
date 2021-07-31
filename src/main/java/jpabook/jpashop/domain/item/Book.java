@@ -11,10 +11,10 @@ import javax.persistence.Entity;
 public class Book extends Item{
     private String author;
     private String isbn;
-    public void setAuthor(String author) {
+    private void setAuthor(String author) {
         this.author = author;
     }
-    public void setIsbn(String isbn) {
+    private void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -26,6 +26,12 @@ public class Book extends Item{
         book.setAuthor(author);
         book.setIsbn(isbn);
 
+        return book;
+    }
+
+    public static Book createBook(Long id,String name, int price, int stockQuantity, String author, String isbn){
+        Book book = Book.createBook(name, price, stockQuantity, author, isbn);
+        book.setId(id);
         return book;
     }
 }

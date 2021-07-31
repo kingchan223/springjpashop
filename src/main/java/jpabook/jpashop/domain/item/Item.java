@@ -44,19 +44,19 @@ public abstract class Item {
         this.stockQuantity = restStock;
     }
 
-    public void setId(Long id) {
+    protected void setId(Long id) {
         this.id = id;
     }
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
-    public void setPrice(int price) {
+    protected void setPrice(int price) {
         this.price = price;
     }
-    public void setStockQuantity(int stockQuantity) {
+    protected void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
-    public void setCategories(List<Category> categories) {
+    protected void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 

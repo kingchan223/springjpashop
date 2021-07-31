@@ -35,9 +35,7 @@ public class MemberController {
 
         Address address = new Address(memberForm.getCity(), memberForm.getStreet(), memberForm.getZipcode());
 
-        Member member = new Member();
-        member.setName(memberForm.getName());
-        member.setAddress(address);
+        Member member = Member.createLoginMember(memberForm.getName(), address);
         memberService.join(member);
         return "redirect:/";
     }

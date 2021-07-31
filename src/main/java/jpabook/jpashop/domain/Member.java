@@ -26,19 +26,26 @@ public class Member {
 
     public Member(){}
 
-    public void setId(Long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    private void setAddress(Address address) {
         this.address = address;
     }
 
-    public void setOrders(List<Order> orders) {
+    private void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public static Member createLoginMember(String name, Address address){
+        Member member = new Member();
+        member.setName(name);
+        member.setAddress(address);
+        return member;
     }
 }
