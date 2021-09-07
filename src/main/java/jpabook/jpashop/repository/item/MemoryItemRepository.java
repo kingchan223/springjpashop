@@ -18,12 +18,6 @@ public class MemoryItemRepository implements ItemRepository{
 
     @Override
     public void save(Item item) {
-        System.out.println(" ⎡⎯------------------------------------------------⎤");
-        System.out.println(" ⎜⎯-------------●●●I   T  E  M●●---------------⎜");
-        System.out.println(" ⎜⎯-----------------●●●●●●--------------------⎜");
-        System.out.println(" ⎜⎯--------------------●●●-----------------------⎜");
-        System.out.println(" ⎜⎯----------------------●-------------------------⎜");
-        System.out.println("⎿⎯--------------●●●●●●●●●●●--------------⏌");
         Long itemId = seq++;
 //        item.setId(itemId);
         store.put(itemId, item);

@@ -17,4 +17,6 @@ public interface MemberService {
 
     //회원 조회
     Member findOne(Long memberId);
+
+    void update(Long id, String name);
 }
