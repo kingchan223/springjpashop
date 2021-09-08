@@ -19,7 +19,7 @@ public class Order {
     @Column(name ="order_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) /*지연로딩 -> 데이터응 DB에서 끌고 오는게 아니라, order에서 끌고온다. 1.일단 프록시 멤버를 넣어둔다.(바이트 버디) 2.멤버 객체를 만들 때 그때 DB에서 가져온다.*/
     @JoinColumn(name="member_id")
     private Member member;
 

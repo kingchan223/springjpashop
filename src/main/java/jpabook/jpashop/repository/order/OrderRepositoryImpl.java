@@ -1,5 +1,6 @@
 package jpabook.jpashop.repository.order;
 
+import jpabook.jpashop.api.Dto.OrderSimpleQueryDTO;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
@@ -90,5 +91,26 @@ public class OrderRepositoryImpl implements OrderRepository {
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
+    }
+
+    // 패치 조인
+    @Override
+    public List<Order> findAllWithMemberDelivery() {
+        List<Order> resultList = em.createQuery(
+                "select o from Order o "
+                        + "join fetch o.member m "
+                        + "join fetch o.delivery d", Order.class
+        ).getResultList();
+        return resultList;
+    }
+
+    // api 스펙에 맞춰서 만들어진 리파지토리 메소드. 지양해야한다.
+    public List<OrderSimpleQueryDTO> findOrderDTOs(){
+        List<OrderSimpleQueryDTO> resultList = em.createQuery(
+                "select new jpabook.jpashop.api.Dto.OrderSimpleQueryDTO(o.id, m.name, o.orderDate, o.status, d.address)"+
+                        " o from Order o"
+                        + " join o.member m"
+                        + " join o.delivery d", OrderSimpleQueryDTO.class).getResultList();
+        return resultList;
     }
 }

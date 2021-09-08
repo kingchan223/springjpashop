@@ -24,6 +24,7 @@ public class Member {
     private Address address;
 
     /*@JsonIgnore*/ //얘를 넣으면 회원 api로 회원정보 조회시 회원 orders가 빠진다. 사용하지 않는 것이 좋음
+    @JsonIgnore
     @OneToMany(mappedBy="member")
     private List<Order> orders  = new ArrayList<>();
 
@@ -37,11 +38,11 @@ public class Member {
         this.name = name;
     }
 
-    private void setAddress(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    private void setOrders(List<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 

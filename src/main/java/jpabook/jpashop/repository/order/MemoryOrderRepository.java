@@ -1,5 +1,6 @@
 package jpabook.jpashop.repository.order;
 
+import jpabook.jpashop.api.Dto.OrderSimpleQueryDTO;
 import jpabook.jpashop.domain.Order;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -34,6 +35,16 @@ public class MemoryOrderRepository implements OrderRepository{
 
     @Override
     public List<Order> findAllByCriteria(OrderSearch orderSearch) {
+        return null;
+    }
+
+    @Override
+    public List<Order> findAllWithMemberDelivery() {
+        return null;
+    }
+
+    @Override
+    public List<OrderSimpleQueryDTO> findOrderDTOs() {
         return null;
     }
 }
