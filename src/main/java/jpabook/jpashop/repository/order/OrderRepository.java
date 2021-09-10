@@ -22,4 +22,6 @@ public interface OrderRepository {
     List<Order> findAllWithMemberDelivery();
 
     List<OrderSimpleQueryDTO> findOrderDTOs();
+
+    List<Order> findAllWithItem();
 }

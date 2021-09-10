@@ -113,4 +113,18 @@ public class OrderRepositoryImpl implements OrderRepository {
                         + " join o.delivery d", OrderSimpleQueryDTO.class).getResultList();
         return resultList;
     }
+
+    @Override
+    public List<Order> findAllWithItem() {
+        List<Order> resultList = em.createQuery(
+                "select distinct o from Order o"
+                        + " join fetch o.member m"//member는 To One이기 때문에 데이터 벙튀기 안된다.
+                        + " join fetch o.delivery d"//delivery는 To One이기 때문에 데이터 벙튀기 안된다.
+                        + " join fetch o.orderItems oi"
+                        + " join fetch oi.item i", Order.class)
+                .setFirstResult(1)
+                .setMaxResults(100)
+                .getResultList();
+        return resultList;
+    }
 }
