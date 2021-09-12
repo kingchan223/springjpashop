@@ -1,13 +1,8 @@
 package jpabook.jpashop.repository.order;
 
 import jpabook.jpashop.api.Dto.OrderSimpleQueryDTO;
-import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
-import org.springframework.util.StringUtils;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface OrderRepository {
@@ -24,4 +19,6 @@ public interface OrderRepository {
     List<OrderSimpleQueryDTO> findOrderDTOs();
 
     List<Order> findAllWithItem();
+
+    List<Order> findAllWithMemberDelivery(int offset, int limit);
 }

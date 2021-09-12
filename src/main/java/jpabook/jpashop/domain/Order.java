@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,6 +31,7 @@ public class Order {
 
     /*컬렉션은 필드에서 바로 초기화하는 것이 안전하다.*/
     @OneToMany(mappedBy="order", cascade = CascadeType.ALL)
+    @BatchSize(size=100)
     private List<OrderItem> orderItems = new ArrayList<>();/*컬렉션 바로 초기화*/
 
     //order_date

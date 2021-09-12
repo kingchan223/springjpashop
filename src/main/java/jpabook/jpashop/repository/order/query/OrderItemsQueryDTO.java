@@ -1,0 +1,23 @@
+package jpabook.jpashop.repository.order.query;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Data
+public class OrderItemsQueryDTO {
+    private Long orderId;
+    private String itemName;
+    private int orderPrice;
+    private int count;
+
+    public OrderItemsQueryDTO(Long orderId,
+                              String itemName,
+                              int orderPrice,
+                              int count) {
+        this.orderId = orderId;
+        this.itemName = itemName;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
+}

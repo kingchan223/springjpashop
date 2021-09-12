@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -94,6 +93,18 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     // 패치 조인
+    @Override
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        List<Order> resultList = em.createQuery(
+                "select o from Order o "
+                        + "join fetch o.member m "
+                        + "join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        return resultList;
+    }
+
     @Override
     public List<Order> findAllWithMemberDelivery() {
         List<Order> resultList = em.createQuery(
