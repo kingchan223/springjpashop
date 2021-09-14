@@ -20,6 +20,5 @@ public class OrderItemDTO {
         orderItemDTO.count = oi.getCount();
 
         return orderItemDTO;
-
     }
 }
