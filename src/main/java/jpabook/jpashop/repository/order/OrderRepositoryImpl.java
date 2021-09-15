@@ -6,6 +6,7 @@ import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -32,7 +33,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
 
     //String query = "select o from Order o join o.member m where o.status =:status and m.name like :name";
-
     public List<Order> findAllByString(OrderSearch orderSearch) {
         //language=JPAQL
         String jpql = "select o From Order o join o.member m";
